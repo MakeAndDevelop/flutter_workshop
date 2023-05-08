@@ -7,7 +7,8 @@ class Speaker {
   final int id;
   final String name;
   final String subtitle;
-  final String bio;
+  final String? bio;
+
   @JsonKey(name: 'image_url')
   final String imageUrl;
 
@@ -18,4 +19,10 @@ class Speaker {
     required this.bio,
     required this.imageUrl,
   });
+
+  /// A necessary factory constructor for creating a new Speaker instance from json data
+  factory Speaker.fromJson(Map<String, dynamic> json) => _$SpeakerFromJson(json);
+
+  /// `toJson` is the convention for a class to declare support for serialization
+  Map<String, dynamic> toJson() => _$SpeakerToJson(this);
 }

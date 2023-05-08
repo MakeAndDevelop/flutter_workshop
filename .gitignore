@@ -89,12 +89,4 @@ app.*.map.json
 # Test coverage output
 **/coverage/**
 **/secrets/**
-src/android/fastlane/report.xml
-src/android/fastlane/report.xml
-src/ios/fastlane/report.xml
-src/ios/fastlane/Preview.html
-src/ios/fastlane/report.xml
-src/ios/Runner.app.dSYM.zip
-src/ios/Runner.ipa
-src/ios/fastlane/report.xml
-src/android/fastlane/report.xml
+**/Resources/**

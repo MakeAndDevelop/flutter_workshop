@@ -12,8 +12,8 @@ Talk _$TalkFromJson(Map<String, dynamic> json) => Talk(
       abstract: json['abstract'] as String,
       startTime: DateTime.parse(json['start_time'] as String),
       endTime: DateTime.parse(json['end_time'] as String),
-      speakerId: json['speaker_id'] as int,
-      stageId: json['stage_id'] as int,
+      speaker: Speaker.fromJson(json['speakers'] as Map<String, dynamic>),
+      stage: Stage.fromJson(json['stages'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TalkToJson(Talk instance) => <String, dynamic>{
@@ -22,6 +22,6 @@ Map<String, dynamic> _$TalkToJson(Talk instance) => <String, dynamic>{
       'abstract': instance.abstract,
       'start_time': instance.startTime.toIso8601String(),
       'end_time': instance.endTime.toIso8601String(),
-      'speaker_id': instance.speakerId,
-      'stage_id': instance.stageId,
+      'speakers': instance.speaker,
+      'stages': instance.stage,
     };

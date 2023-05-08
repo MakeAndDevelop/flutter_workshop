@@ -21,4 +21,10 @@ class Comment {
     required this.userId,
     required this.email,
   });
+
+  /// A necessary factory constructor for creating a new Comment instance from json data
+  factory Comment.fromJson(Map<String, dynamic> json) => _$CommentFromJson(json);
+
+  /// `toJson` is the convention for a class to declare support for serialization
+  Map<String, dynamic> toJson() => _$CommentToJson(this);
 }

@@ -10,7 +10,7 @@ Speaker _$SpeakerFromJson(Map<String, dynamic> json) => Speaker(
       id: json['id'] as int,
       name: json['name'] as String,
       subtitle: json['subtitle'] as String,
-      bio: json['bio'] as String,
+      bio: json['bio'] as String?,
       imageUrl: json['image_url'] as String,
     );
 
