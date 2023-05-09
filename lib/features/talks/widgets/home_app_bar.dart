@@ -14,6 +14,7 @@ class HomeAppBar extends StatelessWidget {
       forceElevated: true,
       expandedHeight: 360,
       flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
         title: const Text('Talks'),
         background: Image.asset(
           Assets.imagesAppdevcon,
