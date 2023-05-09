@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'features/talks/pages/home_page.dart';
-import 'ui/theme/app_colors.dart';
+import 'ui/theme/theme.dart';
 
 void main() {
   runApp(const DevEventsApp());
@@ -15,15 +15,7 @@ class DevEventsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Dev Events',
-      theme: ThemeData(
-        primaryColor: AppColors.primary,
-        scaffoldBackgroundColor: AppColors.background,
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: AppColors.primary,
-          secondary: AppColors.accent,
-          background: AppColors.background,
-        ),
-      ),
+      theme: AppTheme.defaultTheme(context),
       home: const HomePage(),
     );
   }
