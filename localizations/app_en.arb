@@ -10,5 +10,9 @@
   "time": "Time:",
   "@time": {
     "description": "Label for time"
+  },
+  "selectLanguage": "Select language",
+  "@time": {
+    "description": "Label for app language settings"
   }
 }

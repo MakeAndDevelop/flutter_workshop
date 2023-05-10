@@ -12,4 +12,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get time => 'Tijd:';
+
+  @override
+  String get selectLanguage => 'Kies een taal';
 }

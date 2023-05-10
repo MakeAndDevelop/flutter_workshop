@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../generated/assets.dart';
 import '../../../ui/utils/context_extensions.dart';
+import '../../localization/localization_button.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -22,6 +23,9 @@ class HomeAppBar extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
+      actions: const [
+        LocalizationButton(),
+      ],
     );
   }
 }

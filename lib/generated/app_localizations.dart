@@ -105,11 +105,17 @@ abstract class AppLocalizations {
   /// **'Date:'**
   String get date;
 
-  /// Label for time
+  /// Label for app language settings
   ///
   /// In en, this message translates to:
   /// **'Time:'**
   String get time;
+
+  /// No description provided for @selectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select language'**
+  String get selectLanguage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

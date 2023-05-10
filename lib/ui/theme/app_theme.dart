@@ -12,6 +12,9 @@ class AppTheme {
         secondary: AppColors.accent,
         background: AppColors.background,
       ),
+      listTileTheme: const ListTileThemeData(
+        iconColor: AppColors.secondary,
+      ),
       dividerTheme: const DividerThemeData(
         color: AppColors.secondary,
         space: 24,
@@ -20,6 +23,9 @@ class AppTheme {
             bodyColor: AppColors.secondary,
             displayColor: AppColors.secondary,
           ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: AppColors.backgroundLight,
+      ),
     );
   }
 }

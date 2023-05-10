@@ -40,10 +40,7 @@ class _TalkDetailPageState extends State<TalkDetailPage> {
                       Flexible(
                         child: Text(
                           AppLocalizations.of(context)!.date,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Spacing.horizontal8,
@@ -61,10 +58,7 @@ class _TalkDetailPageState extends State<TalkDetailPage> {
                       Flexible(
                         child: Text(
                           AppLocalizations.of(context)!.time,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Spacing.horizontal8,
@@ -119,7 +113,9 @@ class TalkDetailsAppBar extends StatelessWidget {
               image: DecorationImage(
                 image: NetworkImage(talk.speaker.imageUrl),
                 colorFilter: ColorFilter.mode(
-                    AppColors.background.withOpacity(0.5), BlendMode.darken),
+                  AppColors.background.withOpacity(0.5),
+                  BlendMode.darken,
+                ),
                 fit: BoxFit.cover,
               ),
             ),
