@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/talks/pages/home_page.dart';
+import 'features/home/home.dart';
 import 'ui/theme/app_colors.dart';
 
 void main() {

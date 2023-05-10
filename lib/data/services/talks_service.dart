@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
-import '../../../models/models.dart';
+import '../models/models.dart';
 
 class TalksService {
   Future<List<Talk>> getTalks() async {

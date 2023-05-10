@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/models.dart';
-import '../../../ui/theme/app_colors.dart';
-import '../data/talks_service.dart';
-import '../widgets/home_app_bar.dart';
+import '../../data/models/talk.dart';
+import '../../data/services/talks_service.dart';
+import '../../ui/theme/app_colors.dart';
+import 'widgets/home_app_bar.dart';
+import 'widgets/talk_list_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -52,45 +53,6 @@ class _HomePageState extends State<HomePage> {
       delegate: SliverChildBuilderDelegate(
         (context, index) => TalkListItem(talk: talks[index]),
         childCount: talks.length,
-      ),
-    );
-  }
-}
-
-class TalkListItem extends StatelessWidget {
-  final Talk talk;
-
-  const TalkListItem({
-    super.key,
-    required this.talk,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      horizontalTitleGap: 16,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      dense: false,
-      title: Text(
-        talk.title,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppColors.secondary),
-      ),
-      subtitle: Text(
-        talk.speaker.name,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.secondary),
-      ),
-      leading: Container(
-        height: double.infinity,
-        width: 56,
-        padding: const EdgeInsets.only(right: 16),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: AppColors.accent, width: 2),
-          image: DecorationImage(
-            image: NetworkImage(talk.speaker.imageUrl),
-            fit: BoxFit.cover,
-          ),
-        ),
       ),
     );
   }
