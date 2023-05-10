@@ -105,7 +105,7 @@ abstract class AppLocalizations {
   /// **'Date:'**
   String get date;
 
-  /// Label for app language settings
+  /// Error message for no internet connection
   ///
   /// In en, this message translates to:
   /// **'Time:'**
@@ -116,6 +116,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select language'**
   String get selectLanguage;
+
+  /// No description provided for @noInternetError.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not connected to the internet'**
+  String get noInternetError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

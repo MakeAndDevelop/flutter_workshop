@@ -2,5 +2,6 @@
   "homeTitle": "Onderwerpen",
   "date": "Datum:",
   "time": "Tijd:",
-  "selectLanguage": "Kies een taal"
+  "selectLanguage": "Kies een taal",
+  "noInternetError": "Geen internetverbinding"
 }

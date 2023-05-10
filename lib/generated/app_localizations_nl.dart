@@ -15,4 +15,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get selectLanguage => 'Kies een taal';
+
+  @override
+  String get noInternetError => 'Geen internetverbinding';
 }

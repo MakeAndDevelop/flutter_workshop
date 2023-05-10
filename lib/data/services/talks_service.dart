@@ -8,6 +8,8 @@ import 'exceptions/network_exception.dart';
 import 'service_constants.dart';
 
 class TalksService {
+  const TalksService();
+
   Future<List<Talk>> getTalks() async {
     final url = Uri.https(
       'wyjxbjikucgmxpgozvmi.supabase.co',

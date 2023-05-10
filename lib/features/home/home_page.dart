@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../data/models/talk.dart';
-import '../../data/services/talks_service.dart';
 import '../../ui/ui.dart';
+import '../talks/state/talks_model.dart';
 import 'widgets/home_app_bar.dart';
 import 'widgets/talk_list_item.dart';
 
@@ -14,46 +14,53 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _talksService = TalksService();
-  Future<List<Talk>>? _talksFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _talksFuture = _talksService.getTalks();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: CustomScrollView(
-        slivers: [
-          const HomeAppBar(),
-          FutureBuilder<List<Talk>>(
-            future: _talksFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
-                return talkList(snapshot.data!);
-              }
-
-              // Return a progress indicator
-              return const SliverFillRemaining(
-                child: Center(child: CircularProgressIndicator()),
-              );
-            },
-          ),
-        ],
+    return ChangeNotifierProvider<TalksModel>(
+      create: (context) => TalksModel()..getTalks(),
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        body: Builder(
+          builder: (context) {
+            return RefreshIndicator(
+              onRefresh: () async => context.read<TalksModel>().getTalks(),
+              child: CustomScrollView(
+                slivers: [
+                  const HomeAppBar(),
+                  _talkList(),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 
-  SliverList talkList(List<Talk> talks) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => TalkListItem(talk: talks[index]),
-        childCount: talks.length,
-      ),
+  Widget _talkList() {
+    return Consumer<TalksModel>(
+      builder: (context, model, child) {
+        if (model.loading) {
+          return const SliverFillRemaining(
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (model.errorMessage != null) {
+          return SliverFillRemaining(
+            child: Center(
+              child: Text(model.errorMessage!),
+            ),
+          );
+        }
+
+        return SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => TalkListItem(talk: model.talks[index]),
+            childCount: model.talks.length,
+          ),
+        );
+      },
     );
   }
 }
