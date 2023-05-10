@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../generated/app_localizations.dart';
 import '../../../models/models.dart';
 import '../../../ui/theme/app_colors.dart';
 import '../../../ui/theme/layout_constants.dart';
@@ -38,7 +39,7 @@ class _TalkDetailPageState extends State<TalkDetailPage> {
                     children: [
                       Flexible(
                         child: Text(
-                          'Date:',
+                          AppLocalizations.of(context)!.date,
                           style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -56,7 +57,7 @@ class _TalkDetailPageState extends State<TalkDetailPage> {
                     children: [
                       Flexible(
                         child: Text(
-                          'Time:',
+                          AppLocalizations.of(context)!.time,
                           style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
