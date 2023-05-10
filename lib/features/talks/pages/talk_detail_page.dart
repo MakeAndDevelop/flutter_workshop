@@ -100,6 +100,7 @@ class TalkDetailsAppBar extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: 360,
       flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
         title: Text(talk.speaker.name),
         background: Hero(
           tag: 'speaker_${talk.speaker.id}',
