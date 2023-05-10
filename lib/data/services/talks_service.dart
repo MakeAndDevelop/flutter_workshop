@@ -12,7 +12,7 @@ class TalksService {
 
   Future<List<Talk>> getTalks() async {
     final url = Uri.https(
-      'wyjxbjikucgmxpgozvmi.supabase.co',
+      DevApiConstants.supabaseHostName,
       '/rest/v1/talks',
       {'select': 'id,title,abstract,start_time,end_time,speakers(id,name,subtitle,image_url),stages(id,name)'},
     );
