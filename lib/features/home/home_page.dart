@@ -16,23 +16,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<TalksModel>(
-      create: (context) => TalksModel()..getTalks(),
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        body: Builder(
-          builder: (context) {
-            return RefreshIndicator(
-              onRefresh: () async => context.read<TalksModel>().getTalks(),
-              child: CustomScrollView(
-                slivers: [
-                  const HomeAppBar(),
-                  _talkList(),
-                ],
-              ),
-            );
-          },
-        ),
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: Builder(
+        builder: (context) {
+          return RefreshIndicator(
+            onRefresh: () async => context.read<TalksModel>().getTalks(),
+            child: CustomScrollView(
+              slivers: [
+                const HomeAppBar(),
+                _talkList(),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

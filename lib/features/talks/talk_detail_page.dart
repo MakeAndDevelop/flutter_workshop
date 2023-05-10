@@ -1,88 +1,113 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../../../generated/app_localizations.dart';
 import '../../../ui/theme/app_colors.dart';
 import '../../../ui/theme/layout_constants.dart';
 import '../../data/data.dart';
+import 'state/talks_model.dart';
 
 class TalkDetailPage extends StatefulWidget {
-  final Talk talk;
+  final int talkId;
 
-  const TalkDetailPage({super.key, required this.talk});
+  const TalkDetailPage({super.key, required this.talkId});
 
   @override
   State<TalkDetailPage> createState() => _TalkDetailPageState();
 }
 
 class _TalkDetailPageState extends State<TalkDetailPage> {
-  Talk get _talk => widget.talk;
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<TalksModel>().selectTalk(widget.talkId);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          TalkDetailsAppBar(talk: widget.talk),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _talk.title,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  Spacing.vertical8,
-                  Row(
+      body: Consumer<TalksModel>(
+        builder: (context, model, child) {
+          final talk = model.selectedTalk;
+
+          if (talk == null && model.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (talk == null) {
+            return Center(
+              child: Text(model.errorMessage ?? 'Error'),
+            );
+          }
+
+          return CustomScrollView(
+            slivers: [
+              TalkDetailsAppBar(talk: talk),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Flexible(
-                        child: Text(
-                          AppLocalizations.of(context)!.date,
-                          style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
-                        ),
+                      Text(
+                        talk.title,
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
-                      Spacing.horizontal8,
-                      Expanded(
-                        child: Text(
-                          DateFormat.yMd().format(_talk.startTime),
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                      )
+                      Spacing.vertical8,
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              AppLocalizations.of(context)!.date,
+                              style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Spacing.horizontal8,
+                          Expanded(
+                            child: Text(
+                              DateFormat.yMd().format(talk.startTime),
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                          )
+                        ],
+                      ),
+                      Spacing.vertical8,
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              AppLocalizations.of(context)!.time,
+                              style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Spacing.horizontal8,
+                          Expanded(
+                            child: Text(
+                              '${DateFormat.Hm().format(talk.startTime)} - ${DateFormat.Hm().format(talk.endTime)}',
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                          )
+                        ],
+                      ),
+                      const Divider(
+                        thickness: 2,
+                        color: AppColors.accent,
+                      ),
+                      Text(
+                        talk.abstract,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     ],
                   ),
-                  Spacing.vertical8,
-                  Row(
-                    children: [
-                      Flexible(
-                        child: Text(
-                          AppLocalizations.of(context)!.time,
-                          style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Spacing.horizontal8,
-                      Expanded(
-                        child: Text(
-                          '${DateFormat.Hm().format(_talk.startTime)} - ${DateFormat.Hm().format(_talk.endTime)}',
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                      )
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 2,
-                    color: AppColors.accent,
-                  ),
-                  Text(
-                    _talk.abstract,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }

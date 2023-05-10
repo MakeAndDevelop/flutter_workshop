@@ -43,6 +43,10 @@ class TalksModel extends ChangeNotifier {
   }
 
   Future<void> selectTalk(int talkId) async {
+    if (selectedTalk?.id == talkId) {
+      return;
+    }
+
     if (talks.isEmpty) {
       await getTalks();
     }

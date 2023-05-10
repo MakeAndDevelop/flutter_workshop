@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/data.dart';
 import '../../../ui/ui.dart';
-import '../../talks/talks.dart';
+import '../../talks/state/talks_model.dart';
 
 class TalkListItem extends StatelessWidget {
   final Talk talk;
@@ -15,11 +17,11 @@ class TalkListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => TalkDetailPage(talk: talk),
-        ),
-      ),
+      onTap: () async {
+        final router = GoRouter.of(context);
+        await context.read<TalksModel>().selectTalk(talk.id);
+        router.go('/talks/${talk.id}');
+      },
       horizontalTitleGap: 16,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       dense: false,
