@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 import 'features/home/home.dart';
+import 'features/localization/state/localization_model.dart';
 import 'generated/app_localizations.dart';
 import 'ui/theme/app_theme.dart';
 import 'ui/theme/theme.dart';
@@ -16,19 +17,20 @@ class DevEventsApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dev Events',
-      theme: AppTheme.defaultTheme(context),
-      localizationsDelegates: const [
-        // Our own localization delegate
-        AppLocalizations.delegate,
-        // Built-in localization of basic text for default widgets (date pickers, etc.)
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: const HomePage(),
+    return ChangeNotifierProvider(
+      create: (context) => LocalizationModel(),
+      child: Consumer<LocalizationModel>(
+        builder: (context, localization, child) {
+          return MaterialApp(
+            title: 'Dev Events',
+            theme: AppTheme.defaultTheme(context),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: localization.locale,
+            home: const HomePage(),
+          );
+        },
+      ),
     );
   }
 }
