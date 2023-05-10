@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../generated/app_localizations.dart';
-import '../../../models/models.dart';
 import '../../../ui/theme/app_colors.dart';
 import '../../../ui/theme/layout_constants.dart';
+import '../../data/data.dart';
 
 class TalkDetailPage extends StatefulWidget {
   final Talk talk;
@@ -40,7 +40,10 @@ class _TalkDetailPageState extends State<TalkDetailPage> {
                       Flexible(
                         child: Text(
                           AppLocalizations.of(context)!.date,
-                          style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Spacing.horizontal8,
@@ -58,7 +61,10 @@ class _TalkDetailPageState extends State<TalkDetailPage> {
                       Flexible(
                         child: Text(
                           AppLocalizations.of(context)!.time,
-                          style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Spacing.horizontal8,
@@ -112,7 +118,8 @@ class TalkDetailsAppBar extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(talk.speaker.imageUrl),
-                colorFilter: ColorFilter.mode(AppColors.background.withOpacity(0.5), BlendMode.darken),
+                colorFilter: ColorFilter.mode(
+                    AppColors.background.withOpacity(0.5), BlendMode.darken),
                 fit: BoxFit.cover,
               ),
             ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'features/talks/pages/home_page.dart';
+import 'features/home/home.dart';
 import 'generated/app_localizations.dart';
+import 'ui/theme/app_theme.dart';
 import 'ui/theme/theme.dart';
 
 void main() {
