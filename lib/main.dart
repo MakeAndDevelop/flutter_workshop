@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'data/services/service_constants.dart';
+import 'features/authentication/state/auth_state.dart';
 import 'features/home/home.dart';
 import 'features/localization/state/localization_model.dart';
 import 'features/talks/state/talks_model.dart';
@@ -10,7 +13,14 @@ import 'generated/app_localizations.dart';
 import 'ui/theme/app_theme.dart';
 import 'ui/theme/theme.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+    url: DevApiConstants.supabaseUrl,
+    anonKey: DevApiConstants.supabaseApiKey,
+  );
+
   runApp(const DevEventsApp());
 }
 
@@ -23,6 +33,7 @@ class DevEventsApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => LocalizationModel()),
+        ChangeNotifierProvider(create: (context) => AuthModel()),
         ChangeNotifierProvider(create: (context) => TalksModel()..getTalks()),
       ],
       child: Consumer<LocalizationModel>(
