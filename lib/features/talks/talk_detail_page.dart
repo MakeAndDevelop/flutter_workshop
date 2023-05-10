@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../models/models.dart';
 import '../../../ui/theme/app_colors.dart';
 import '../../../ui/theme/layout_constants.dart';
+import '../../data/data.dart';
 
 class TalkDetailPage extends StatefulWidget {
   final Talk talk;
