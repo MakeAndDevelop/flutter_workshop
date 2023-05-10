@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
 
               // Return a progress indicator
               return const SliverFillRemaining(
-                child: CircularProgressIndicator(),
+                child: Center(child: CircularProgressIndicator()),
               );
             },
           ),
