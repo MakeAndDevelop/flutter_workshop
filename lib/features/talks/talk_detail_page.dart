@@ -22,7 +22,9 @@ class _TalkDetailPageState extends State<TalkDetailPage> {
   void initState() {
     super.initState();
 
-    context.read<TalksModel>().selectTalk(widget.talkId);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<TalksModel>().selectTalk(widget.talkId);
+    });
   }
 
   @override
