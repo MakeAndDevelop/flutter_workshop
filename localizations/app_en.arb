@@ -1,0 +1,22 @@
+{
+  "homeTitle": "Talks",
+  "@homeTitle": {
+    "description": "Title for talks"
+  },
+  "date": "Date:",
+  "@date": {
+    "description": "Label for dates"
+  },
+  "time": "Time:",
+  "@time": {
+    "description": "Label for time"
+  },
+  "selectLanguage": "Select language",
+  "@time": {
+    "description": "Label for app language settings"
+  },
+     "noInternetError": "You are not connected to the internet",
+     "@time": {
+       "description": "Error message for no internet connection"
+     }
+}

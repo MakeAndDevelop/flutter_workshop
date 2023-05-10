@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../generated/assets.dart';
+import '../../../ui/utils/context_extensions.dart';
+import '../../localization/localization_button.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -14,12 +16,16 @@ class HomeAppBar extends StatelessWidget {
       forceElevated: true,
       expandedHeight: 360,
       flexibleSpace: FlexibleSpaceBar(
-        title: const Text('Talks'),
+        centerTitle: true,
+        title: Text(context.localizations.homeTitle),
         background: Image.asset(
           Assets.imagesAppdevcon,
           fit: BoxFit.cover,
         ),
       ),
+      actions: const [
+        LocalizationButton(),
+      ],
     );
   }
 }

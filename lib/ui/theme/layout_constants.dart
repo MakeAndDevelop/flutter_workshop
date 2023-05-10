@@ -5,6 +5,7 @@ class Insets {
   static const double padding8 = 8;
 
   static const EdgeInsets all16 = EdgeInsets.all(padding16);
+  static const EdgeInsets vertical16 = EdgeInsets.symmetric(vertical: padding16);
   static const EdgeInsets all8 = EdgeInsets.all(padding8);
 }
 
