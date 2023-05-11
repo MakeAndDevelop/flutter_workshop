@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1,
+    "title": "Problem solvers",
+    "abstract": "As technologists we’re always ready to fire up our IDE, Photoshop, or Illustrator and start something new, to build a better mouse trap, to connect dog-owners with dog-walkers. We build and build and build, but most of us don’t have the luxury to consider whether what we’re building is genuinely important.\n\nBut what happens when we encounter a catalyst — the death of a family member, job loss, or pandemic — that shakes everything up? How do you re-evaluate that mouse-trap factory job?\n\nAt heart we’re all problem solvers. So let’s explore what we can do as problem solvers to make the world a better place.",
+    "start_time": "2023-05-12T07:00:00+00:00",
+    "end_time": "2023-05-12T07:45:00+00:00",
+    "speakers": {
+      "id": 1,
+      "name": "Jeff Watkins",
+      "subtitle": "Engineering Manager, Mentor, and Coach at ClassPass",
+      "image_url": "https://appdevcon.nl/wp-content/uploads/2023/04/8d1f-400o400o2-hC4SuXGBGSvcdUfEuc9zWj.jpe"
+    },
+    "stages": {
+      "id": 1,
+      "name": "Main Stage"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Privacy and speed: The story behind our face blurring solution",
+    "abstract": "Toloka is a crowdsourcing platform designed for gathering and labeling data. This data could contain personal information that needs to be anonymized.\nI will tell a story about our thorny path toward fast and light face anonymization mechanics in the Toloka mobile app.",
+    "start_time": "2023-05-12T07:50:00+00:00",
+    "end_time": "2023-05-12T08:35:00+00:00",
+    "speakers": {
+      "id": 2,
+      "name": "Evgeniya Sukhodolskaya",
+      "subtitle": "Dev advocate, Toloka",
+      "image_url": "https://appdevcon.nl/wp-content/uploads/2023/04/81d8-400o400o2-73zir4jvUGB4X7uYKRHcfZ.jpg"
+    },
+    "stages": {
+      "id": 2,
+      "name": "Future Tech"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Navigating the ai revolution: a developer’s guide to staying relevant and valuable",
+    "abstract": "As the world of work is changing so rapidly, skills will become outdated even faster than they do today. Even if you don’t know exactly what or when, you will have to continuously learn.\n\nAs the scale and speed AI is developed and deployed increases, it doesn’t matter if you graduated last year or 10 years ago. There will be a need not only for individuals who can build AI, but also ones who can work with AI and the rest? will still need to learn how to live with AI. To have a successful career in any field, and particularly in the tech industry, the only skill that will remain important is the skill of learning new things.\n\nWe will discuss some trends and share tips on how to become an avid lifelong learner.\n",
+    "start_time": "2023-05-12T08:55:00+00:00",
+    "end_time": "2023-05-12T09:40:00+00:00",
+    "speakers": {
+      "id": 3,
+      "name": "Adi Stein",
+      "subtitle": "Developers GTM- Middle East & Africa HQ",
+      "image_url": "https://appdevcon.nl/wp-content/uploads/2023/03/ddf4-400o400o2-3hkVCqnsiNgfntszqYRS2p.jpg"
+    },
+    "stages": {
+      "id": 2,
+      "name": "Future Tech"
+    }
+  },
+  {
+    "id": 4,
+    "title": "The state of the metaverse, and what it means for us as mobile app developers.",
+    "abstract": "The metaverse is still evolving and in the early stages but experts expect 2023 to be the year where first movers will really enter the space and the technologies that will end up supporting the metaverse establish themselves.\n\nWe’re already seeing metaverse use cases and applications that are setting the pace for what’s to come. As a result, metaverse apps will likely start to become the norm, which is why it’s paramount for the app development industry to stay on its toes regarding the metaverse. The potential app concepts seem nearly limitless, including immersive games, VR/AR simulations and 3D office interactions tools. But will it stick?\n\nIn this talk we’ll dive into the world of the metaverse and discuss what this means to us mobile app developers. Is the metaverse a threat to the mobile apps we build these days, will it co-exists or will it just be a trend?",
+    "start_time": "2023-05-12T09:50:00+00:00",
+    "end_time": "2023-05-12T10:20:00+00:00",
+    "speakers": {
+      "id": 4,
+      "name": "Ennio Brands",
+      "subtitle": "Technical Strategist at Move",
+      "image_url": "https://appdevcon.nl/wp-content/uploads/2023/04/bdcf-400o400o2-heqA1VjkbPGKU2zH5SZjK2-1.png"
+    },
+    "stages": {
+      "id": 2,
+      "name": "Future Tech"
+    }
+  }
+]
