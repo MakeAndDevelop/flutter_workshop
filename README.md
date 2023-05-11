@@ -1,15 +1,27 @@
 ## Overall workshop Assignment
-Create an event app for a conference.
+Create an event app for App Dev Con.
 In the app we have a dashboard with an event image and upcoming talks for the day.
-Talks can be clicked on and openend for more details.
-After the talk is passed you can leave a comment.
+Talks can be clicked on and opened for more details.
+Participants can leave comments on talks.
 Speakers bio can be viewed.
-
-## Program:
-- Flutter introduction
-- Getting up and running
-
-**Assignment - Create a new project:**:
+---
+## Workshop program:
+1. Flutter introduction
+2. Getting up and running
+3. Create your first page
+4. Flutter Dev tools
+5. Your second page with simple navigation
+6. Add Localization support
+7. Start with State management
+8. Add API calls
+9. More State management
+10. Declarative Navigation
+11. Add Web Support
+12. Create a comment section
+13. Add supabase authentication and comment away!
+14. Make it prettier!
+---
+**Assignment - Create a new project:**
 - File Structure, Platform projects, lib and test
 - code analyses
 - pubspec.yaml
@@ -17,10 +29,10 @@ Speakers bio can be viewed.
 - Hot reload
 - Widget tree
 - Rendering
-
+---
 **Coding Session - Create a page:**
 - HomePage
-- AppDevCon image on the top (assets) folder
+- AppDevCon image on the top (assets folder)
 - List of Talks
 - Create Models
     - package json_serializable
@@ -28,11 +40,15 @@ Speakers bio can be viewed.
     - dev dependencies
 - StatelessWidget vs Statefull Widgets
 
+---
+
 **Explanation - Flutter DevTools:**
 - Widget tree
 - Performance
 - Network tab
 - Rendering hints: images, guidelines etc.
+
+---
 
 **Coding Session - Talk Details & Theming:**
 - Create the feature folder "talk"
@@ -45,10 +61,10 @@ Navigator.of(context).push(
         ),
       ),
 ```
-- Create ThemeData
-- Add colors constants
-- Add insets constants
+- Create ThemeData, add colors constants and insets constants
 - Use the Hero widget to animate the speakers thumbnail to the top of the TalkDetailsPage.
+
+---
 
 **Assignment - Add localization:**
 - Also see: https://docs.flutter.dev/accessibility-and-localization/internationalization
@@ -71,6 +87,8 @@ Navigator.of(context).push(
     home: MyHomePage(),
   );
   ```
+---
+
 - Modify `pubspec.yaml` to enable generation
   ```
   flutter:
@@ -86,13 +104,19 @@ Navigator.of(context).push(
   ```
 - Create arb files in a new `localizations` folder:
   `app_en.arb` and `app_nl.arb`
+- Run the command `flutter gen-l10n`
+- Use the generated code in your app to localize texts
 
-**Assignment - State Management:**
+---
+
+**Coding Session -  State Management:**
 - `flutter pub add provider`
-- Create a LocalizationModel that inherits from ChangeNotifier
-- Provide the LocalizationModel to the widget tree with ChangeNotifierProvider
-- Consume the LocalizationModel in your MaterialApp
-- Implement State management for your talks
+- Create a `LocalizationModel` that inherits from `ChangeNotifier`
+- Provide the `LocalizationModel` to the widget tree with `ChangeNotifierProvider`
+- Consume the `LocalizationModel` in your MaterialApp widget
+- Create an HomeAppBar Action button that switches the locale
+
+---
 
 **Assignment - API integration:**
 - `flutter pub add http`
@@ -108,9 +132,13 @@ final url = Uri.https(
 final response = await http.get(url, headers: DevApiConstants.defaultHeaders);
 ```
 
+---
+
 **Assignment - State Management for Talks:**
 - Implement State management for Talks using e.g. `TalksModel`
 - The TalksModel should have a `selectTalk(int talkId)` action that sets a `selectedTalk` property
+
+---
 
 **Assignment - Navigation:**
 - See: https://pub.dev/documentation/go_router/latest/topics/Get%20started-topic.html
@@ -142,14 +170,20 @@ return MaterialApp.router(
 );
 ```
 
+---
+
 **Assignment - Add web support:**
 - In your project folder run: `flutter create --platforms web .`
+- Run your app in your browser
+
+---
 
 **Assignment Create a comment section:**
 - On the TalksDetailPage create a comment section.
 - Comments for a talk can be retrieved by: `https://wyjxbjikucgmxpgozvmi.supabase.co/rest/v1/comments?talk_id=eq.${talk.id}`
 - Create a comment form with an email address field and a comment field
 
+---
 
 **Assignment - Integrate supabase for authentication:**
 - `flutter pub add supabase_flutter`
