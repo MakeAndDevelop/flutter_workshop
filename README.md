@@ -1,82 +1,204 @@
-# Title: Build Your First Flutter App
+## Overall workshop Assignment
+Create an event app for App Dev Con.
+In the app we have a dashboard with an event image and upcoming talks for the day.
+Talks can be clicked on and opened for more details.
+Participants can leave comments on talks.
+Speakers bio can be viewed.
+---
+## Workshop program:
+1. Flutter introduction
+2. Getting up and running
+3. Create your first page
+4. Flutter Dev tools
+5. Your second page with simple navigation
+6. Add Localization support
+7. Start with State management
+8. Add API calls
+9. More State management
+10. Declarative Navigation
+11. Add Web Support
+12. Create a comment section
+13. Add supabase authentication and comment away!
+14. Make it prettier!
+---
+**Assignment - Create a new project:**
+- File Structure, Platform projects, lib and test
+- code analyses
+- pubspec.yaml
+- Run
+- Hot reload
+- Widget tree
+- Rendering
+---
+**Coding Session - Create a page:**
+- HomePage
+- AppDevCon image on the top (assets folder)
+- List of Talks
+- Create Models
+    - package json_serializable
+    - pub.dev
+    - dev dependencies
+- StatelessWidget vs Statefull Widgets
 
-## Duration: 4 hours
+---
 
-**Objective**: By the end of this workshop, participants will have a solid understanding of Flutter and have built their first functional app using Flutter and Dart.
+**Explanation - Flutter DevTools:**
+- Widget tree
+- Performance
+- Network tab
+- Rendering hints: images, guidelines etc.
 
-**Target Audience**: Beginners with basic programming knowledge looking to learn Flutter for mobile app development.
+---
 
-**Requirements**:
-1. Laptop with a code editor (e.g., Visual Studio Code, Android Studio)
-2. Flutter SDK installed
-3. Android Studio or Xcode (for iOS) installed
-4. Emulator or physical device for app testing
+**Coding Session - Talk Details & Theming:**
+- Create the feature folder "talk"
+- Add page `TalkDetailsPage`
+- Navigate to the Talks page like so:
+```
+Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => TalkDetailPage(talk: talk),
+        ),
+      ),
+```
+- Create ThemeData, add colors constants and insets constants
+- Use the Hero widget to animate the speakers thumbnail to the top of the TalkDetailsPage.
 
-## Curriculum:
+---
 
-### Hour 1: Introduction to Flutter and Setup
+**Assignment - Add localization:**
+- Also see: https://docs.flutter.dev/accessibility-and-localization/internationalization
+- Add packages:
+    - localizations: `flutter pub add flutter_localizations --sdk=flutter`
+    - intl: `flutter pub add intl`
+- Add localization delegates
+  ```
+  return const MaterialApp(
+    title: 'Localizations Sample App',
+    localizationsDelegates: [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ],
+    supportedLocales: [
+      Locale('en'), // English
+      Locale('nl'), // Dutch
+    ],
+    home: MyHomePage(),
+  );
+  ```
+---
 
-#### 1.1. Welcome and Overview (10 minutes)
-- Brief introduction to Flutter
-- Workshop goals and expected outcomes
-- Agenda overview
+- Modify `pubspec.yaml` to enable generation
+  ```
+  flutter:
+    generate: true # Add this line
+  ```
+- Add l10n.yaml configuration file
+  ```
+  arb-dir: localizations
+  template-arb-file: app_en.arb
+  synthetic-package: false
+  output-dir: lib/generated
+  output-localization-file: app_localizationsdart
+  ```
+- Create arb files in a new `localizations` folder:
+  `app_en.arb` and `app_nl.arb`
+- Run the command `flutter gen-l10n`
+- Use the generated code in your app to localize texts
 
-#### 1.2. Flutter Installation and Setup (20 minutes)
-- Installing Flutter SDK
-- Setting up the development environment (Visual Studio Code, Android Studio)
-- Configuring emulators or physical devices for app testing
+---
 
-#### 1.3. Dart Basics (30 minutes)
-- Introduction to Dart
-- Variables, data types, and operators
-- Control structures (if-else, loops)
-- Functions
+**Coding Session -  State Management:**
+- `flutter pub add provider`
+- Create a `LocalizationModel` that inherits from `ChangeNotifier`
+- Provide the `LocalizationModel` to the widget tree with `ChangeNotifierProvider`
+- Consume the `LocalizationModel` in your MaterialApp widget
+- Create an HomeAppBar Action button that switches the locale
 
-### Hour 2: Flutter Basics and Widgets
+---
 
-#### 2.1. Flutter Basics (20 minutes)
-- Understanding the Flutter architecture
-- The role of widgets in Flutter
-- Stateful vs Stateless widgets
+**Assignment - API integration:**
+- `flutter pub add http`
+- Change the TalksService to implement dart http
+- Construct the url like this:
+```dart
+final url = Uri.https(
+      'wyjxbjikucgmxpgozvmi.supabase.co',
+      '/rest/v1/talks',
+      {'select': 'id,title,abstract,start_time,end_time,speakers(id,name,subtitle,image_url),stages(id,name)'},
+    );
 
-#### 2.2. Basic Widgets (40 minutes)
-- MaterialApp, Scaffold, and AppBar
-- Text, Column, Row, and Container
-- Handling user input with TextField and GestureDetector
-- Implementing buttons with RaisedButton and IconButton
+final response = await http.get(url, headers: DevApiConstants.defaultHeaders);
+```
 
-### Hour 3: Building the App - Part 1
+---
 
-#### 3.1. App Design and Structure (10 minutes)
-- Overview of the app to be built
-- Planning the app structure and layout
+**Assignment - State Management for Talks:**
+- Implement State management for Talks using e.g. `TalksModel`
+- The TalksModel should have a `selectTalk(int talkId)` action that sets a `selectedTalk` property
 
-#### 3.2. Creating the App Scaffold (20 minutes)
-- Setting up the main app structure
-- Implementing the AppBar and main layout
+---
 
-#### 3.3. Implementing the User Interface (30 minutes)
-- Adding Text and Button widgets
-- Arranging widgets with Column and Row
-- Styling the app using ThemeData and custom styles
+**Assignment - Navigation:**
+- See: https://pub.dev/documentation/go_router/latest/topics/Get%20started-topic.html
+- Add go_router: `flutter pub add go_router`
+- Create a router and add it to your app widget:
+```
+final _router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomePage(),
+      routes: [
+        GoRoute(
+          path: 'talks/:talkId',
+          builder: (context, state) => TalkDetailPage(talkId: int.parse(state.pathParameters['talkId'] ?? '-1')),
+        ),
+      ],
+    ),
+  ],
+);
 
-### Hour 4: Building the App - Part 2
+return MaterialApp.router(
+  title: 'Dev Events',
+  theme: AppTheme.defaultTheme(context),
+  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  supportedLocales: AppLocalizations.supportedLocales,
+  locale: localization.locale,
+  routerConfig: _router,
+);
+```
 
-#### 4.1. Managing State (20 minutes)
-- Understanding state management in Flutter
-- Using setState to update the UI
+---
 
-#### 4.2. Implementing App Logic (30 minutes)
-- Adding functionality to buttons and user input fields
-- Responding to user actions
+**Assignment - Add web support:**
+- In your project folder run: `flutter create --platforms web .`
+- Run your app in your browser
 
-#### 4.3. Testing and Debugging (10 minutes)
-- Testing the app on emulators and physical devices
-- Basic debugging techniques
+---
 
-#### 4.4. Recap and Next Steps (10 minutes)
-- Review of the workshop content
-- Next steps for learning and practicing Flutter
-- Q&A and workshop closing
+**Assignment Create a comment section:**
+- On the TalksDetailPage create a comment section.
+- Comments for a talk can be retrieved by: `https://wyjxbjikucgmxpgozvmi.supabase.co/rest/v1/comments?talk_id=eq.${talk.id}`
+- Create a comment form with an email address field and a comment field
 
-**Note**: During each section, short hands-on exercises will be provided for participants to practice the concepts they have just learned. Participants will receive continuous guidance and support from the trainer throughout the workshop.
+---
+
+**Assignment - Integrate supabase for authentication:**
+- `flutter pub add supabase_flutter`
+- Ask me for the api details
+- Create an AuthModel to hold the auth state and business logic.
+- Use the supabase package to login with oAuth provider Github.
+- Use the `session.accessToken` to post comments to the backend:
+```
+curl --request POST \
+  --url https://wyjxbjikucgmxpgozvmi.supabase.co/rest/v1/comments \
+  --header 'Authorization: Bearer {ACCESS_TOKEN}' \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5anhiamlrdWNnbXhwZ296dm1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMzNzM0NDQsImV4cCI6MTk5ODk0OTQ0NH0.2YLZM998QBNiWVWsWbA86vae7dyJskA5OWoELhUlKJs' \
+  --data '{
+	"talk_id": 1,
+	"content": "Test comment"
+}'
+```~~~~
