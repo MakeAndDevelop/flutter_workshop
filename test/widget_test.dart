@@ -20,6 +20,8 @@ void main() {
 
     // Tap the '+' icon and trigger a frame.
     await tester.tap(find.byIcon(Icons.add));
+
+    // Pump rebuilds the widget so that it updates similar to after a user interaction
     await tester.pump();
 
     // Verify that our counter has incremented.
